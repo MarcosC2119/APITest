@@ -1,36 +1,162 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# API Demo - Next.js REST API
 
-## Getting Started
+Una API REST completa construida con Next.js que demuestra todos los métodos HTTP con ejemplos prácticos y documentación detallada.
 
-First, run the development server:
+## 🚀 Inicio Rápido
 
+1. **Instalación de dependencias:**
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Ejecutar en desarrollo:**
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Construir para producción:**
+```bash
+npm run build
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+La aplicación estará disponible en [http://localhost:3000](http://localhost:3000)
 
-## Learn More
+## 📚 Documentación de la API
 
-To learn more about Next.js, take a look at the following resources:
+### Endpoint Base: `/api/tasks`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### GET `/api/tasks`
+- **Descripción:** Obtiene todas las tareas disponibles
+- **Respuesta:** Array de tareas
+- **Ejemplo de respuesta:**
+```json
+[
+  {
+    "id": 1,
+    "title": "Learn Next.js",
+    "description": "Study Next.js documentation",
+    "completed": false,
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  }
+]
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+#### POST `/api/tasks`
+- **Descripción:** Crea una nueva tarea
+- **Cuerpo requerido:**
+```json
+{
+  "title": "Nueva tarea",
+  "description": "Descripción de la tarea",
+  "completed": false
+}
+```
+- **Respuesta:** Tarea creada con ID
+- **Códigos de estado:**
+  - 201: Tarea creada exitosamente
+  - 400: Datos inválidos o faltantes
 
-## Deploy on Vercel
+#### HEAD `/api/tasks`
+- **Descripción:** Obtiene solo los headers de la respuesta
+- **Headers de respuesta:**
+  - `Content-Type: application/json`
+  - `X-Total-Count`: Número total de tareas
+  - `Cache-Control: no-store`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### OPTIONS `/api/tasks`
+- **Descripción:** Obtiene información sobre los métodos disponibles
+- **Headers de respuesta:**
+  - `Allow: GET, POST, HEAD, OPTIONS`
+  - `Cache-Control: no-store`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Endpoint Base: `/api/tasks/[id]`
+
+#### GET `/api/tasks/[id]`
+- **Descripción:** Obtiene una tarea específica por ID
+- **Respuesta:** Objeto de tarea
+- **Códigos de estado:**
+  - 200: Tarea encontrada
+  - 404: Tarea no encontrada
+
+#### PUT `/api/tasks/[id]`
+- **Descripción:** Reemplaza completamente una tarea existente
+- **Cuerpo requerido:**
+```json
+{
+  "title": "Tarea actualizada",
+  "description": "Nueva descripción",
+  "completed": true
+}
+```
+- **Respuesta:** Tarea actualizada
+- **Códigos de estado:**
+  - 200: Tarea actualizada
+  - 400: Datos inválidos
+  - 404: Tarea no encontrada
+
+#### PATCH `/api/tasks/[id]`
+- **Descripción:** Actualiza parcialmente una tarea
+- **Cuerpo:** Cualquier campo a actualizar
+```json
+{
+  "completed": true
+}
+```
+- **Respuesta:** Tarea actualizada
+- **Códigos de estado:**
+  - 200: Tarea actualizada
+  - 400: Datos inválidos
+  - 404: Tarea no encontrada
+
+#### DELETE `/api/tasks/[id]`
+- **Descripción:** Elimina una tarea específica
+- **Respuesta:** Sin cuerpo
+- **Códigos de estado:**
+  - 204: Tarea eliminada
+  - 404: Tarea no encontrada
+
+#### OPTIONS `/api/tasks/[id]`
+- **Descripción:** Obtiene información sobre los métodos disponibles para una tarea específica
+- **Headers de respuesta:**
+  - `Allow: GET, PUT, PATCH, DELETE, OPTIONS`
+  - `Cache-Control: no-store`
+
+## 🛠️ Características
+
+- Interfaz de usuario interactiva para probar la API
+- Documentación detallada de cada endpoint
+- Validación de datos en todas las rutas
+- Manejo de errores consistente
+- Respuestas en formato JSON
+- Headers de caché apropiados
+
+## ⚠️ Limitaciones
+
+- Los datos se mantienen en memoria (se reinician al reiniciar el servidor)
+- No hay autenticación implementada
+- Sin paginación para grandes conjuntos de datos
+
+## 🛠️ Tecnologías Utilizadas
+
+- Next.js 14
+- React 18
+- TypeScript
+- Tailwind CSS
+- ESLint
+
+## 📝 Notas de Desarrollo
+
+- La aplicación usa el App Router de Next.js
+- Implementa todas las operaciones CRUD
+- Incluye una interfaz de usuario para pruebas
+- Sigue las mejores prácticas REST
+- Implementa manejo de errores HTTP estándar
+
+## 🔄 Estado del Proyecto
+
+Este proyecto está en desarrollo activo. Las características planificadas incluyen:
+- Persistencia de datos
+- Autenticación
+- Paginación
+- Filtrado y búsqueda
