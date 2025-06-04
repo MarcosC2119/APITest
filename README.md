@@ -153,10 +153,4 @@ La aplicación estará disponible en [http://localhost:3000](http://localhost:30
 - Sigue las mejores prácticas REST
 - Implementa manejo de errores HTTP estándar
 
-## 🔄 Estado del Proyecto
 
-Este proyecto está en desarrollo activo. Las características planificadas incluyen:
-- Persistencia de datos
-- Autenticación
-- Paginación
-- Filtrado y búsqueda
